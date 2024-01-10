@@ -1,0 +1,82 @@
+import math
+
+# Set up a loop and switch statement to be able to test each case without trigerring all the others and loop back so I don't have to recompile.
+keepLooping = True
+
+while keepLooping:
+
+    probNum = int( input ('\nWhat problem number do you wish to test?' ) )
+
+    match probNum:
+        
+        case 1: # Declare your age as an integer variable
+            myAge = int(32) # in years
+
+        case 2: # Declare your height as a float variable
+            myHeight = float(5 + (11 / 12)) # in feet
+
+        case 3: # Declare a variable that store a complex number
+            complexNumber = 7+2j
+
+        case 4: # Write a script that prompts the user to enter base and height of the triangle and calculate an area of this triangle (area = 0.5 x b x h).
+            # Can one input be used to gether multipe values at once? Yes!!
+            triangleBase = float( input ('Please enter the length of the triangle base: ') )
+            triangleHeight = float( input ('Please enter the length of the triangle height: ') )
+            # var1, var2 = input('Var1'), input('Var2')
+            triangleArea = (triangleBase * triangleHeight) / 2
+            print ('The area of the triangle is ', triangleArea, '.')
+            print()
+
+        case 5: # Write a script that prompts the user to enter side a, side b, and side c of the triangle. Calculate the perimeter of the triangle (perimeter = a + b + c).
+            sideA, sideB, sideC = float(input('Side a: ')), float(input('Side b: ')), float(input('Side c: '))
+            print ('The perimeter of the triangle is ', (sideA + sideB + sideC))
+            print()
+
+        case 6: # Get length and width of a rectangle using prompt. Calculate its area (area = length x width) and perimeter (perimeter = 2 x (length + width))
+            rectLength, rectHeight = float(input('Length: ')), float(input('Height: '))
+            print ('The perimeter of the rectangle is ', 2 * (rectHeight + rectLength))
+            print ('The area of the rectangle is ', (rectHeight * rectLength))
+
+        case 7: # Get radius of a circle using prompt. Calculate the area (area = pi x r x r) and circumference (c = 2 x pi x r) where pi = 3.14.
+            radius = float(input('Radius: '))
+            print ('The circumference of the circle is ', 2 * math.pi * radius)
+            print ('The area of the circle is ', (radius ** 2) * math.pi )    
+
+        case 8: # Calculate the slope, x-intercept and y-intercept of y=2x-2. (Take equation as input)
+            equation = input ('Enter the linear equation: y=')
+            equation = equation.replace(' ', '').replace('+', ' +').replace('-', ' -').lstrip()
+            termList = equation.split(' ')
+            print (termList)
+            for i in termList:
+                if 'x' in i:
+                    slope = i.replace('x','')
+                    if slope == '+' or len(slope) == 0:
+                        slope = 1
+                    elif slope == '-':
+                        slope = -1
+                else:
+                    yInt = i
+            xInt = -1 * float(yInt) / float(slope)
+            print ('The slope is ', slope, ', the y-intercept is (0,', yInt, '), and the x-intercept is (', xInt,', 0).')
+
+        case 9: # Slope is (m = y2-y1/x2-x1). Find the slope and Euclidean distance between point (2, 2) and point (6,10)
+            slope2 = (10 - 2) / (6 - 2)
+            print ('The Euclidean distance between (2, 2) and (6, 10) is ', math.sqrt((10 - 2) ** 2 + (6 - 2) ** 2), '.')
+            print ('The slope between (2, 2) and (6, 10) is ', slope2, '.')
+
+        case 10: # Compare the slopes in tasks 8 and 9. Must run cases 8 and 9 before this case.
+            slope = float(slope)
+            if slope == slope2:
+                comparison = 'equal to'
+            elif slope > slope2:
+                comparison = 'greater than'
+            else:
+                comparison = 'less than'
+            print (slope, ' is ', comparison, slope2, '.')
+
+        case _: # Default. No valid selection made.
+            print ('No valid selection was made. Please try again.')
+        
+    response = input ('Do you wish to test another problem? (Y/N) ').lower()
+    if response == 'n':
+        keepLooping = False
